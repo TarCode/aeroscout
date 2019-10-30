@@ -1,16 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
+import { ScoutListComponent } from './scout-list/scout-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ScoutListComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    RouterModule.forRoot([
+      { path: '', component: ScoutListComponent },
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
