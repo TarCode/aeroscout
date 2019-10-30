@@ -6,6 +6,10 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ScoutListComponent } from './scout-list/scout-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MatCardModule} from '@angular/material/card';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +21,10 @@ import { ScoutListComponent } from './scout-list/scout-list.component';
     HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: ScoutListComponent },
-    ])
+    ]),
+    BrowserAnimationsModule,
+
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
