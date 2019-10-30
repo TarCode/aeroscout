@@ -1,18 +1,15 @@
 <h2>Aerobotics Scout Jobs</h2>
 
-<div class="row">
-    <div class="col-6">
-        <h3>Missions</h3>
-        <div *ngFor="let mission of missions">
-            <br>
-            <mat-card>
-                <mat-card-title>{{ mission.title }}</mat-card-title>
-                <mat-card-subtitle>{{ mission.date }}</mat-card-subtitle>
-            </mat-card>
-        </div>
-    </div>
-    <div class="col-6">
-        <h3>Workers</h3>
-        <p *ngFor="let scout of scouts">{{ scout.name }}</p>
+<div>
+    <h3>Missions</h3>
+    <div *ngFor="let mission of missions">
+        <br>
+        <mat-card>
+            <mat-card-title>Mission: {{ mission.title }}</mat-card-title>
+            <mat-card-subtitle>{{ mission.date }}</mat-card-subtitle>
+            <mat-card-content>
+                <button color='secondary' mat-raised-button (click)="openDialog()">Assign worker</button>
+            </mat-card-content>
+        </mat-card>
     </div>
 </div>

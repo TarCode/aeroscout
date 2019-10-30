@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Add worker</h1>
+<div mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Assign worker</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let scout of data" [value]="scout.id">
+            {{scout.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+  <button mat-button mat-dialog-close>Okay</button>
+</div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-
+import {MatDialog} from '@angular/material/dialog';
+import {AddWorkerDialogComponent} from '../add-worker-dialog/add-worker-dialog.component'
 @Component({
   selector: 'app-scout-list',
   templateUrl: './scout-list.component.html',
@@ -10,8 +11,21 @@ export class ScoutListComponent implements OnInit {
   scouts;
   missions;
   constructor(
-    private dataService: DataService
+    private dataService: DataService,
+    public dialog: MatDialog
   ) { }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(AddWorkerDialogComponent, {
+      data: this.scouts
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  
 
   ngOnInit() {
     this.dataService.getData()

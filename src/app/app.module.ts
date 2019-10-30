@@ -9,12 +9,23 @@ import { ScoutListComponent } from './scout-list/scout-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatCardModule} from '@angular/material/card';
+import {MatSelectModule} from '@angular/material/select';
+import {MatButtonModule} from '@angular/material/button';
+
+import { AddWorkerDialogComponent } from './add-worker-dialog/add-worker-dialog.component';
+
+
+import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog'
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ScoutListComponent
+    ScoutListComponent,
+    AddWorkerDialogComponent
+  ],
+  entryComponents: [
+    AddWorkerDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -24,9 +35,14 @@ import {MatCardModule} from '@angular/material/card';
     ]),
     BrowserAnimationsModule,
 
-    MatCardModule
+    MatCardModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatDialogModule
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
