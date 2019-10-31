@@ -68,6 +68,9 @@
     </div>
 
     <div [@fadeInOut] *ngIf="calendar">
-        <app-full-calendar [eventData]="missions"></app-full-calendar>
+        <br>
+        <mat-card style="margin-top:80px">
+            <app-full-calendar [eventData]="missions"></app-full-calendar>
+        </mat-card>
     </div>
 </div>
