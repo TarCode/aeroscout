@@ -46,7 +46,7 @@ constructor(
               eventLimit: 2
           }
         },
-        allDaySlot: false,
+        allDaySlot: true,
         slotDuration: moment.duration('00:15:00'),
         slotLabelInterval: moment.duration('01:00:00'),
         defaultDate: this.eventData.length > 0 ? this.eventData[0].start : 1,

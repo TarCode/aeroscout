@@ -53,7 +53,16 @@ export class ScoutListComponent implements OnInit {
       res => {
         
         this.appstateService.setWorkers(res[0]['results']);
-        this.appstateService.setJobs(res[1]['results'].map(i => ({...i, start: moment(i.date) })))
+        this.appstateService.setJobs(
+          res[1]['results']
+          .map(i => (
+            {
+              ...i, 
+              start: moment(i.date + ' ' + '08:00'),
+              end: moment(i.date + ' ' + '17:00')
+            })
+          )
+        )
 
         this.scouts = this.appstateService.workers;
         this.missions = this.appstateService.jobs;
