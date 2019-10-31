@@ -8,40 +8,49 @@
         <h3 class="left">Missions</h3>
     </div>
     <div class="col-6-sm header-col">
+
         <div class="right">
-            <button class="toggle-btn" (click)="toggleView()" mat-raised-button>{{ calendar ? "List View" : "Calendar View" }}</button>
+            <button class="toggle-btn switch" (click)="toggleShowCompleted()" mat-raised-button>
+                {{ show_completed ? "Hide Completed" : "Show Completed" }}
+            </button>
+
+            <button class="toggle-btn" (click)="toggleView()" mat-raised-button>
+                {{ calendar ? "List View" : "Calendar View" }}
+            </button>
         </div>
     </div>
     <div *ngIf="!calendar">
-        <div class='col-6' *ngFor="let mission of missions">
-            <br>
-            <mat-card class='center' style="height:190px;">
-                <mat-card-title>Mission: {{ mission.title }}</mat-card-title>
-                <mat-card-subtitle>{{ mission.date }}</mat-card-subtitle>
-                <mat-card-content>
-                    <b>Status: </b>{{ mission.complete ? "Completed" : "Incomplete" }}
-                    <br>
-                    <b *ngIf="mission.worker">Assigned to: </b>{{mission.worker && mission.worker.name}}
-                </mat-card-content>
-                <mat-card-actions>
-                        <button 
-                            *ngIf="!mission.complete" 
-                            color='secondary' 
-                            mat-raised-button 
-                            (click)="openDialog(mission)"
-                        >
-                            {{mission.worker ? "Change worker" : "Assign worker"}}
-                        </button>
-                        <button 
-                            *ngIf="mission.worker && !mission.complete" 
-                            color='secondary' 
-                            mat-raised-button 
-                            (click)="completeMission(mission.id)"
+        <div *ngFor="let mission of missions">
+            <div class='col-6' *ngIf="!show_completed && !mission.complete || show_completed">
+                <br>
+                <mat-card  class='center' style="height:190px;">
+                    <mat-card-title>Mission: {{ mission.title }}</mat-card-title>
+                    <mat-card-subtitle>{{ mission.date }}</mat-card-subtitle>
+                    <mat-card-content>
+                        <b>Status: </b>{{ mission.complete ? "Completed" : "Incomplete" }}
+                        <br>
+                        <b *ngIf="mission.worker">Assigned to: </b>{{mission.worker && mission.worker.name}}
+                    </mat-card-content>
+                    <mat-card-actions>
+                            <button 
+                                *ngIf="!mission.complete" 
+                                color='secondary' 
+                                mat-raised-button 
+                                (click)="openDialog(mission)"
                             >
-                            Complete mission
-                        </button>
-                    </mat-card-actions>
-            </mat-card>
+                                {{mission.worker ? "Change worker" : "Assign worker"}}
+                            </button>
+                            <button 
+                                *ngIf="mission.worker && !mission.complete" 
+                                color='secondary' 
+                                mat-raised-button 
+                                (click)="completeMission(mission.id)"
+                                >
+                                Complete mission
+                            </button>
+                        </mat-card-actions>
+                </mat-card>
+            </div>
         </div>
     </div>
 

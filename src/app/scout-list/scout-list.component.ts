@@ -12,6 +12,7 @@ import * as moment from 'moment';
 })
 export class ScoutListComponent implements OnInit {
   loading;
+  show_completed;
 
   scouts;
   missions;
@@ -36,6 +37,10 @@ export class ScoutListComponent implements OnInit {
 
   toggleView() {
     this.calendar = !this.calendar;
+  }
+
+  toggleShowCompleted() {
+    this.show_completed = !this.show_completed;
   }
 
   completeMission(id) {
