@@ -25,8 +25,8 @@
         </mat-form-field>
     </div>
     <div *ngIf="!calendar">
-        <div *ngFor="let mission of missions">
-            <div class='col-6' *ngIf="!show_completed && !mission.complete || show_completed">
+        <div [@fadeInOut] *ngFor="let mission of missions">
+            <div [@fadeInOut] class='col-6' *ngIf="!show_completed && !mission.complete || show_completed">
                 <br>
                 <mat-card 
                     *ngIf="search_val.length > 0 && mission.title.toLowerCase().includes(search_val.toLowerCase()) || !search_val" 
@@ -36,9 +36,13 @@
                     <mat-card-title>{{ mission.title }}</mat-card-title>
                     <mat-card-subtitle>{{ mission.date }}</mat-card-subtitle>
                     <mat-card-content>
-                        <b>Status: </b>{{ mission.complete ? "Completed" : "Incomplete" }}
+                        <span [@fadeInOut]>
+                            <b>Status: </b>{{ mission.complete ? "Completed" : "Incomplete" }}
+                        </span>
                         <br>
-                        <b *ngIf="mission.worker">Assigned to: </b>{{mission.worker && mission.worker.name}}
+                        <span *ngIf="mission.worker" [@fadeInOut]>
+                            <b>Assigned to: </b>{{mission.worker && mission.worker.name}}
+                        </span>
                     </mat-card-content>
                     <mat-card-actions>
                             <button
@@ -63,7 +67,7 @@
         </div>
     </div>
 
-    <div *ngIf="calendar">
+    <div [@fadeInOut] *ngIf="calendar">
         <app-full-calendar [eventData]="missions"></app-full-calendar>
     </div>
 </div>

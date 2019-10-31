@@ -2,13 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { AppstateService } from '../appstate.service';
 import {MatDialog} from '@angular/material/dialog';
-import {AddWorkerDialogComponent} from '../add-worker-dialog/add-worker-dialog.component'
+import { trigger, state, style, animate, transition } from '@angular/animations';
 import * as moment from 'moment';
+import {AddWorkerDialogComponent} from '../add-worker-dialog/add-worker-dialog.component'
 
 @Component({
   selector: 'app-scout-list',
   templateUrl: './scout-list.component.html',
-  styleUrls: ['./scout-list.component.scss']
+  styleUrls: ['./scout-list.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      state('void', style({
+        opacity: 0
+      })),
+      transition('void <=> *', animate(500)),
+    ]),
+  ]
 })
 export class ScoutListComponent implements OnInit {
   loading;
