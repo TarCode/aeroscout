@@ -8,8 +8,11 @@
             <mat-card-title>Mission: {{ mission.title }}</mat-card-title>
             <mat-card-subtitle>{{ mission.date }}</mat-card-subtitle>
             <mat-card-content>
-                <button color='secondary' mat-raised-button (click)="openDialog()">Assign worker</button>
+                {{ mission.complete ? "Completed" : "Incomplete" }}
             </mat-card-content>
+            <mat-card-actions>
+                    <button color='secondary' mat-raised-button (click)="openDialog(mission)">Assign worker</button>
+            </mat-card-actions>
         </mat-card>
     </div>
 </div>

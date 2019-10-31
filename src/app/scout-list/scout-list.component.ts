@@ -15,17 +15,19 @@ export class ScoutListComponent implements OnInit {
     public dialog: MatDialog
   ) { }
 
-  openDialog() {
+  openDialog(job) {
     const dialogRef = this.dialog.open(AddWorkerDialogComponent, {
-      data: this.scouts
+      data: {
+        scouts: this.scouts,
+        job
+      },
+      hasBackdrop: true
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
   }
-
-  
 
   ngOnInit() {
     this.dataService.getData()

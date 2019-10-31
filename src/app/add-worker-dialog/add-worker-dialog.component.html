@@ -1,9 +1,9 @@
-<h1 mat-dialog-title>Add worker</h1>
+<h1 mat-dialog-title>Add worker to {{ data.job.title }}</h1>
 <div mat-dialog-content>
     <mat-form-field>
         <mat-label>Assign worker</mat-label>
         <mat-select>
-            <mat-option *ngFor="let scout of data" [value]="scout.id">
+            <mat-option *ngFor="let scout of data.scouts" [value]="scout.id">
             {{scout.name}}
             </mat-option>
         </mat-select>
