@@ -5,12 +5,17 @@ import { Injectable } from '@angular/core';
 })
 export class AppstateService {
   jobs = [];
+  workers = [];
 
   setJobs(jobs) {
     this.jobs = jobs;
   }
 
-  setWorker(job_id, worker) {
+  setWorkers(workers) {
+    this.workers = workers;
+  }
+
+  assignWorkerToJob(job_id, worker) {
     const job_index = this.jobs.findIndex(i => i.id === job_id);
     this.jobs[job_index]['worker'] = worker;
   }

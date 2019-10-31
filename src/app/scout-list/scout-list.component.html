@@ -12,6 +12,7 @@
             </mat-card-content>
             <mat-card-actions>
                     <button color='secondary' mat-raised-button (click)="openDialog(mission)">Assign worker</button>
+                    <button *ngIf="mission.worker" color='secondary' mat-raised-button (click)="completeMission(mission.id)">Complete mission</button>
             </mat-card-actions>
         </mat-card>
     </div>

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import { AppstateService } from '../appstate.service';
 import {MatDialog} from '@angular/material/dialog';
 import {AddWorkerDialogComponent} from '../add-worker-dialog/add-worker-dialog.component'
+
 @Component({
   selector: 'app-scout-list',
   templateUrl: './scout-list.component.html',
@@ -12,6 +14,7 @@ export class ScoutListComponent implements OnInit {
   missions;
   constructor(
     private dataService: DataService,
+    private appstateService: AppstateService,
     public dialog: MatDialog
   ) { }
 
@@ -29,12 +32,19 @@ export class ScoutListComponent implements OnInit {
     });
   }
 
+  completeMission(id) {
+    this.appstateService.setComplete(id);
+  }
+
   ngOnInit() {
     this.dataService.getData()
     .subscribe(
       res => {
         this.scouts = res[0]['results'];
-        this.missions = res[1]['results'];
+
+        this.appstateService.setJobs(res[1]['results']);
+        this.missions = this.appstateService.jobs;
+
         console.log("API RESPONSE", this.missions);
       },
       err => {
