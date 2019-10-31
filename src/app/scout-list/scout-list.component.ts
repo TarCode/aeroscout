@@ -12,7 +12,9 @@ import * as moment from 'moment';
 })
 export class ScoutListComponent implements OnInit {
   loading;
-  show_completed;
+  show_completed = true;
+
+  search_val = "";
 
   scouts;
   missions;
@@ -24,8 +26,14 @@ export class ScoutListComponent implements OnInit {
     public dialog: MatDialog
   ) { }
 
+  setSearchVal(val) {
+    console.log("THE SEARCH VAL", this.search_val);
+    this.search_val = val;
+    
+  }
+
   openDialog(job) {
-    const dialogRef = this.dialog.open(AddWorkerDialogComponent, {
+    this.dialog.open(AddWorkerDialogComponent, {
       data: {
         scouts: this.scouts,
         job,

@@ -4,7 +4,7 @@ import { forkJoin } from 'rxjs';
 
 const httpConfig = {
   headers: new HttpHeaders({
-    'Authorization': '1536660107LWZ2JGK17J72HR4O5NU53FBBSLSMRB'
+    'Authorization': '1536660107LWZ2JGK17J72HR4O5NU53FBBSLSMRB' //  Token should be an env var
   })
 }
 
