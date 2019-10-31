@@ -43,6 +43,7 @@
                                 *ngIf="!mission.complete" 
                                 mat-raised-button 
                                 (click)="openDialog(mission)"
+                                color="secondary"
                             >
                                 {{mission.worker ? "Change worker" : "Assign worker"}}
                             </button>
@@ -50,6 +51,7 @@
                                 *ngIf="mission.worker && !mission.complete" 
                                 mat-raised-button 
                                 (click)="completeMission(mission.id)"
+                                color="secondary"
                                 >
                                 Complete mission
                             </button>

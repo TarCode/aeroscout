@@ -27,9 +27,7 @@ export class ScoutListComponent implements OnInit {
   ) { }
 
   setSearchVal(val) {
-    console.log("THE SEARCH VAL", this.search_val);
     this.search_val = val;
-    
   }
 
   openDialog(job) {
