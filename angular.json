@@ -93,7 +93,6 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/fullcalendar/dist/fullcalendar.min.css",
               "src/styles.scss"
             ],
             "scripts": []
