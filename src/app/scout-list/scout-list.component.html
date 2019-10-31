@@ -1,12 +1,15 @@
 <h2>Aerobotics Scout Jobs</h2>
 
-<div class="row">
+<div *ngIf="loading">
+    <p>Loading...</p>
+</div>
+<div *ngIf="!loading" class="row">
     <div class="col-6-sm header-col">
         <h3 class="left">Missions</h3>
     </div>
     <div class="col-6-sm header-col">
         <div class="right">
-            <button class="toggle-btn" (click)="toggleView()" mat-raised-button>{{ calendar ? "List" : "Calendar" }}</button>
+            <button class="toggle-btn" (click)="toggleView()" mat-raised-button>{{ calendar ? "List View" : "Calendar View" }}</button>
         </div>
     </div>
     <div *ngIf="!calendar">
@@ -43,6 +46,6 @@
     </div>
 
     <div *ngIf="calendar">
-        <app-full-calendar></app-full-calendar>
+        <app-full-calendar [eventData]="missions"></app-full-calendar>
     </div>
 </div>

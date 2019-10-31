@@ -23,22 +23,11 @@ constructor(
   private appstateService: AppstateService,
 ) {
     const data = appstateService.jobs;
-    console.log("JOB EVENTS", data);
-    
-    // this.eventData = [
-    //     {
-    //       title: 'event1',
-    //       start: moment()
-    //     },
-    //     {
-    //       title: 'event2',
-    //       start: moment(),
-    //       end: moment().add(2, 'days')
-    //     },
-    // ];
+
+    this.eventData = data;
 
     this.defaultConfigurations = {
-    editable: true,
+        editable: false,
         eventLimit: true,
         titleFormat: 'MMM D YYYY',
         header: {
@@ -60,6 +49,7 @@ constructor(
         allDaySlot: false,
         slotDuration: moment.duration('00:15:00'),
         slotLabelInterval: moment.duration('01:00:00'),
+        defaultDate: this.eventData.length > 0 ? this.eventData[0].start : 1,
         firstDay: 1,
         selectable: true,
         selectHelper: true,

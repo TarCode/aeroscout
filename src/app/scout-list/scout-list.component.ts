@@ -3,6 +3,7 @@ import { DataService } from '../data.service';
 import { AppstateService } from '../appstate.service';
 import {MatDialog} from '@angular/material/dialog';
 import {AddWorkerDialogComponent} from '../add-worker-dialog/add-worker-dialog.component'
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-scout-list',
@@ -10,6 +11,8 @@ import {AddWorkerDialogComponent} from '../add-worker-dialog/add-worker-dialog.c
   styleUrls: ['./scout-list.component.scss']
 })
 export class ScoutListComponent implements OnInit {
+  loading;
+
   scouts;
   missions;
 
@@ -29,10 +32,6 @@ export class ScoutListComponent implements OnInit {
       },
       hasBackdrop: true
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
   }
 
   toggleView() {
@@ -48,19 +47,22 @@ export class ScoutListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loading = true;
     this.dataService.getData()
     .subscribe(
       res => {
-        this.scouts = res[0]['results'];
+        
+        this.appstateService.setWorkers(res[0]['results']);
+        this.appstateService.setJobs(res[1]['results'].map(i => ({...i, start: moment(i.date) })))
 
-        this.appstateService.setJobs(res[1]['results']);
+        this.scouts = this.appstateService.workers;
         this.missions = this.appstateService.jobs;
 
-        console.log("API RESPONSE", this.missions);
+        this.loading = false;
       },
       err => {
         console.log("API ERROR", err);
-        
+        alert("An error occurred while fetching data")
       }
     )
   }
