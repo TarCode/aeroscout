@@ -1,10 +1,12 @@
 <h2>Aerobotics Scout Jobs</h2>
 
-<div>
-    <h3>Missions</h3>
-    <div *ngFor="let mission of missions">
+<div class="row">
+    <div class="col-12">
+        <h3>Missions</h3>
+    </div>
+    <div class='col-6' *ngFor="let mission of missions">
         <br>
-        <mat-card>
+        <mat-card class='center' style="height:190px;">
             <mat-card-title>Mission: {{ mission.title }}</mat-card-title>
             <mat-card-subtitle>{{ mission.date }}</mat-card-subtitle>
             <mat-card-content>
@@ -26,10 +28,10 @@
                         color='secondary' 
                         mat-raised-button 
                         (click)="completeMission(mission.id)"
-                    >
+                        >
                         Complete mission
                     </button>
-            </mat-card-actions>
+                </mat-card-actions>
         </mat-card>
     </div>
 </div>
