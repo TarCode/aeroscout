@@ -12,6 +12,8 @@ import {AddWorkerDialogComponent} from '../add-worker-dialog/add-worker-dialog.c
 export class ScoutListComponent implements OnInit {
   scouts;
   missions;
+
+  calendar = false;
   constructor(
     private dataService: DataService,
     private appstateService: AppstateService,
@@ -31,6 +33,10 @@ export class ScoutListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
+
+  toggleView() {
+    this.calendar = !this.calendar;
   }
 
   completeMission(id) {

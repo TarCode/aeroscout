@@ -15,14 +15,15 @@ import {MatButtonModule} from '@angular/material/button';
 import { AddWorkerDialogComponent } from './add-worker-dialog/add-worker-dialog.component';
 
 
-import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog'
-
+import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
+import { FullCalendarComponent } from './full-calendar/full-calendar.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     ScoutListComponent,
-    AddWorkerDialogComponent
+    AddWorkerDialogComponent,
+    FullCalendarComponent
   ],
   entryComponents: [
     AddWorkerDialogComponent
@@ -31,7 +32,8 @@ import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dia
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot([
-      { path: '', component: ScoutListComponent },
+      { path: '', component: ScoutListComponent }
+
     ]),
     BrowserAnimationsModule,
 
