@@ -1,7 +1,11 @@
 import {Component, Inject} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
-export interface DialogData {}
+export interface DialogData {
+  scouts: [],
+  job : { id: '', title: ''},
+  setWorker: (arg1, arg2) => {}
+}
 
 /**
  * @title Injecting data when opening a dialog
@@ -12,6 +16,7 @@ export interface DialogData {}
   templateUrl: 'add-worker-dialog.component.html',
 })
 export class AddWorkerDialogComponent {
+  selectedScout;
   constructor(
     public dialogRef: MatDialogRef<AddWorkerDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
