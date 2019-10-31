@@ -22,7 +22,8 @@ export class ScoutListComponent implements OnInit {
     const dialogRef = this.dialog.open(AddWorkerDialogComponent, {
       data: {
         scouts: this.scouts,
-        job
+        job,
+        setWorker: this.setWorker.bind(this)
       },
       hasBackdrop: true
     });
@@ -34,6 +35,10 @@ export class ScoutListComponent implements OnInit {
 
   completeMission(id) {
     this.appstateService.setComplete(id);
+  }
+
+  setWorker(job_id, worker) {
+    this.appstateService.assignWorkerToJob(job_id, worker);
   }
 
   ngOnInit() {

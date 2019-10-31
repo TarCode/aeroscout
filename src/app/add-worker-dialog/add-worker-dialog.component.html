@@ -2,11 +2,16 @@
 <div mat-dialog-content>
     <mat-form-field>
         <mat-label>Assign worker</mat-label>
-        <mat-select>
-            <mat-option *ngFor="let scout of data.scouts" [value]="scout.id">
+        <mat-select [(value)]="selectedScout">
+            <mat-option *ngFor="let scout of data.scouts" [value]="scout">
             {{scout.name}}
             </mat-option>
         </mat-select>
     </mat-form-field>
-  <button mat-button mat-dialog-close>Okay</button>
+
+</div>
+<br>
+<div class='right'>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-dialog-close mat-raised-button (click)="data.setWorker(data.job.id, selectedScout)">Add</button>
 </div>
