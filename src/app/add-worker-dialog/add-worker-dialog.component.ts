@@ -8,10 +8,16 @@ import {
   MAT_DIALOG_DATA
 } from '@angular/material/dialog';
 
+import {
+  Worker,
+  Mission,
+  SetWorkerFunc
+} from '../interfaces/appdata';
+
 export interface DialogData {
-  workers: [],
-  job : { id: '', title: ''},
-  setWorker: (arg1, arg2) => {}
+  workers:Array<Worker>,
+  job : Mission,
+  setWorker:SetWorkerFunc
 }
 
 @Component({
@@ -19,7 +25,7 @@ export interface DialogData {
   templateUrl: 'add-worker-dialog.component.html',
 })
 export class AddWorkerDialogComponent {
-  selectedScout;
+  selectedWorker:Worker;
   constructor(
     public dialogRef: MatDialogRef<AddWorkerDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData

@@ -8,6 +8,7 @@ export interface Worker {
 export interface Mission {
     id:number;
     farm_id:number;
+    title:string;
     date:string;
     complete:boolean;
 }
@@ -18,4 +19,8 @@ export interface WorkerResponse {
 
 export interface MissionReponse {
     results: Array<Mission>;
+}
+
+export interface SetWorkerFunc {
+    (job_id:number, worker:Worker): null;
 }

@@ -18,7 +18,7 @@ import {
 } from '../add-worker-dialog/add-worker-dialog.component'
 
 import {
-  Worker, 
+  Worker,
   Mission,
   WorkerResponse,
   MissionReponse
@@ -39,11 +39,11 @@ import {
 })
 
 export class MissionsComponent implements OnInit {
-  loading;
-  show_completed = true;
-  search_val = "";
-  workers;
-  missions;
+  loading:boolean;
+  show_completed:boolean = true;
+  search_val:string = "";
+  workers:Array<Worker>;
+  missions:Array<Mission>;
 
   calendar = false;
   constructor(
@@ -52,11 +52,11 @@ export class MissionsComponent implements OnInit {
     public dialog: MatDialog
   ) { }
 
-  setSearchVal(val) {
+  setSearchVal(val:string) {
     this.search_val = val;
   }
 
-  openDialog(job) {
+  openDialog(job:Mission) {
     this.dialog.open(AddWorkerDialogComponent, {
       data: {
         workers: this.workers,
@@ -75,11 +75,11 @@ export class MissionsComponent implements OnInit {
     this.show_completed = !this.show_completed;
   }
 
-  completeMission(id) {
+  completeMission(id:number) {
     this.appstateService.setComplete(id);
   }
 
-  setWorker(job_id, worker) {
+  setWorker(job_id:number, worker:Worker) {
     this.appstateService.assignWorkerToJob(job_id, worker);
   }
 
@@ -92,11 +92,11 @@ export class MissionsComponent implements OnInit {
         this.appstateService.setWorkers(res[0].results);
         this.appstateService.setJobs(
           res[1].results
-          .map(i => (
+          .map((mission:Mission) => (
             {
-              ...i, 
-              start: moment(i.date + ' ' + '08:00'),
-              end: moment(i.date + ' ' + '17:00')
+              ...mission, 
+              start: moment(mission.date + ' ' + '08:00'),
+              end: moment(mission.date + ' ' + '17:00')
             })
           )
         )
