@@ -17,6 +17,13 @@ import {
   AddWorkerDialogComponent
 } from '../add-worker-dialog/add-worker-dialog.component'
 
+import {
+  Worker, 
+  Mission,
+  WorkerResponse,
+  MissionReponse
+} from '../interfaces/appdata';
+
 @Component({
   selector: 'app-missions',
   templateUrl: './missions.component.html',
@@ -30,6 +37,7 @@ import {
     ]),
   ]
 })
+
 export class MissionsComponent implements OnInit {
   loading;
   show_completed = true;
@@ -79,11 +87,11 @@ export class MissionsComponent implements OnInit {
     this.loading = true;
     this.dataService.getData()
     .subscribe(
-      res => {
+      (res: [WorkerResponse, MissionReponse]) => {
         
-        this.appstateService.setWorkers(res[0]['results']);
+        this.appstateService.setWorkers(res[0].results);
         this.appstateService.setJobs(
-          res[1]['results']
+          res[1].results
           .map(i => (
             {
               ...i, 
@@ -102,5 +110,4 @@ export class MissionsComponent implements OnInit {
       }
     )
   }
-
 }
