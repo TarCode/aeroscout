@@ -1,17 +1,27 @@
-<h1 mat-dialog-title>Add worker to {{ data.job.title }}</h1>
+<h1 mat-dialog-title>
+    Add worker to {{ data.job.title }}
+</h1>
 <div mat-dialog-content>
     <mat-form-field>
         <mat-label>Assign worker</mat-label>
-        <mat-select [(value)]="selectedScout">
-            <mat-option *ngFor="let scout of data.scouts" [value]="scout">
-            {{scout.name}}
+        <mat-select [(value)]="selectedWorker">
+            <mat-option 
+                *ngFor="let worker of data.workers" 
+                [value]="worker"
+            >
+            {{worker.name}}
             </mat-option>
         </mat-select>
     </mat-form-field>
-
 </div>
 <br>
 <div class='right'>
     <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-dialog-close mat-raised-button (click)="data.setWorker(data.job.id, selectedScout)">Add</button>
+    <button 
+        mat-dialog-close 
+        mat-raised-button 
+        (click)="data.setWorker(data.job.id, selectedWorker)"
+    >
+        Add
+    </button>
 </div>

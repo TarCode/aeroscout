@@ -1,15 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
-import { AppstateService } from '../appstate.service';
-import {MatDialog} from '@angular/material/dialog';
-import { trigger, state, style, animate, transition } from '@angular/animations';
+import { 
+  Component, 
+  OnInit 
+} from '@angular/core';
+import { DataService } from '../services/data/data.service';
+import { AppstateService } from '../services/appstate/appstate.service';
+import { MatDialog } from '@angular/material/dialog';
+import { 
+  trigger, 
+  state, 
+  style, 
+  animate, 
+  transition 
+} from '@angular/animations';
 import * as moment from 'moment';
-import {AddWorkerDialogComponent} from '../add-worker-dialog/add-worker-dialog.component'
+import {
+  AddWorkerDialogComponent
+} from '../add-worker-dialog/add-worker-dialog.component'
 
 @Component({
-  selector: 'app-scout-list',
-  templateUrl: './scout-list.component.html',
-  styleUrls: ['./scout-list.component.scss'],
+  selector: 'app-missions',
+  templateUrl: './missions.component.html',
+  styleUrls: ['./missions.component.scss'],
   animations: [
     trigger('fadeInOut', [
       state('void', style({
@@ -19,13 +30,11 @@ import {AddWorkerDialogComponent} from '../add-worker-dialog/add-worker-dialog.c
     ]),
   ]
 })
-export class ScoutListComponent implements OnInit {
+export class MissionsComponent implements OnInit {
   loading;
   show_completed = true;
-
   search_val = "";
-
-  scouts;
+  workers;
   missions;
 
   calendar = false;
@@ -42,7 +51,7 @@ export class ScoutListComponent implements OnInit {
   openDialog(job) {
     this.dialog.open(AddWorkerDialogComponent, {
       data: {
-        scouts: this.scouts,
+        workers: this.workers,
         job,
         setWorker: this.setWorker.bind(this)
       },
@@ -83,10 +92,8 @@ export class ScoutListComponent implements OnInit {
             })
           )
         )
-
-        this.scouts = this.appstateService.workers;
+        this.workers = this.appstateService.workers;
         this.missions = this.appstateService.jobs;
-
         this.loading = false;
       },
       err => {
@@ -95,4 +102,5 @@ export class ScoutListComponent implements OnInit {
       }
     )
   }
+
 }

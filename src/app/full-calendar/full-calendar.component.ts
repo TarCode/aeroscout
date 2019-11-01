@@ -1,27 +1,32 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { 
+  Component, 
+  OnInit, 
+  Input 
+} from '@angular/core';
 import * as $ from 'jquery';
 import 'fullcalendar';
 import * as moment from 'moment';
+import { AppstateService } from '../services/appstate/appstate.service';
 
-import {AppstateService} from '../appstate.service';
 @Component({
    selector: 'app-full-calendar',
    templateUrl: './full-calendar.component.html',
    styleUrls: ['./full-calendar.component.scss']
 })
+
 export class FullCalendarComponent implements OnInit {
-@Input()
-      set configurations(config: any) {
-         if(config) {
-            this.defaultConfigurations = config;  
-         }
+  @Input()
+  set configurations(config: any) {
+      if(config) {
+        this.defaultConfigurations = config;  
       }
-@Input() eventData: any;
+  }
+  @Input() eventData: any;
    
-defaultConfigurations: any;
-constructor(
-  private appstateService: AppstateService,
-) {
+  defaultConfigurations: any;
+  constructor(
+    private appstateService: AppstateService,
+  ) {
     const data = appstateService.jobs;
 
     this.eventData = data;
@@ -54,6 +59,7 @@ constructor(
         selectable: true,
         selectHelper: true,
         events: this.eventData,
+        defaultView: 'agendaWeek'
     };
    }
    ngOnInit() { 
